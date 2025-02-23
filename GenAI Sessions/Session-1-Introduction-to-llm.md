@@ -1,6 +1,6 @@
 # Session 1: More than a Gentle Introduction to Large Language Models
 
-> “You insist that there is something a machine cannot do. If you tell me precisely what it is a machine cannot do, then I can always make a machine which will do just that.” - John Von Neumann
+> "You insist that there is something a machine cannot do. If you tell me precisely what it is a machine cannot do, then I can always make a machine which will do just that." - John Von Neumann
 
 ## What's Past is Prologue.
 
@@ -50,7 +50,7 @@ where H is the actual entropy and H₀ is the maximum possible entropy.
 #### Neural Networks: A Building Block of Deep Learning
 ##### 1. The Perceptron: The Simplest Neural Unit
 The perceptron is the basic unit of a neural network. Mathematically, it performs a weighted sum of inputs and applies an activation function to produce an output.
-$y = f(w_1 x_1 + w_2 x_2 + ... + w_n x_n + b)$
+\[y = f(w_1 x_1 + w_2 x_2 + ... + w_n x_n + b)\]
 
 where:
 - $x_i$ are inputs
@@ -63,7 +63,7 @@ If we consider binary classification, the perceptron learns to separate two clas
 ##### 2. From Perceptron to Deep Networks
 A single perceptron is limited to learning only linearly separable problems. To learn more complex relationships, we stack multiple layers of perceptrons together, forming a multi-layer perceptron (MLP). Each layer in an MLP transforms its input non-linearly before passing it to the next layer:
 
-$h_j = f(W_j x + b_j)$
+\[h_j = f(W_j x + b_j)\]
 
 where $W_j$ and $b_j$ are the weight matrix and bias for layer $j$, and $f$ is the activation function.
 
@@ -75,7 +75,7 @@ Deep networks with multiple layers capture hierarchical representations, making 
 ##### 1. Forward Propagation
 Given an input $x$, the network computes outputs by applying weights and biases layer by layer. If we have $L$ layers, the computation follows:
 
-$a^{(l)} = f(W^{(l)} a^{(l-1)} + b^{(l)})$
+\[a^{(l)} = f(W^{(l)} a^{(l-1)} + b^{(l)})\]
 
 where $a^{(0)} = x$ and $a^{(l)}$ is the activation at layer $l$.
 
@@ -302,9 +302,9 @@ sentence (provided by the positional encodings) but also each word's interaction
 
 #### Multi-Head Attention
 
-$MultiHead(Q, K, V) = Concat(head_1....head_2)W^{O}$
-$head_i=Attention(QW_{i}^{Q},KW_{i}^{K},VW_{i}^{V})$
+$\text{MultiHead}(Q, K, V) = \text{Concat}(head_1,...,head_h)W^O$
+$\text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)$
 
-$Where, W_{i}^{Q} \in R^{d_{model}\times{d_{k}}}, W_{i}^{K} \in R^{d_{model}\times{d_{k}}}, W_{i}^{V} \in R^{d_{model}\times{d_{k}}}, W_{i}^{O} \in R^{hd_{v}\times{d_{model}}}$
+$\text{where, } W_i^Q \in \mathbb{R}^{d_{\text{model}} \times d_k}, W_i^K \in \mathbb{R}^{d_{\text{model}} \times d_k}, W_i^V \in \mathbb{R}^{d_{\text{model}} \times d_v}, W^O \in \mathbb{R}^{hd_v \times d_{\text{model}}}$
 
 ![multi-head-attention.jpg](../assets/multi-head-attention.jpg)

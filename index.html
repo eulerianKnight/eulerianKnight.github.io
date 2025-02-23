@@ -13,6 +13,7 @@
             display: flex;
             font-family: Arial, sans-serif;
             margin: 0;
+            overflow-x: hidden;
         }
         #sidebar {
             width: 250px;
@@ -22,11 +23,30 @@
             height: 100vh;
             position: fixed;
             overflow-y: auto;
+            transition: transform 0.3s ease;
+        }
+        #sidebar.collapsed {
+            transform: translateX(-100%);
+        }
+        #toggle-btn {
+            position: fixed;
+            top: 10px;
+            left: 260px;
+            background: #f1c40f;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        #toggle-btn.collapsed {
+            left: 10px;
         }
         #content {
             margin-left: 270px;
             padding: 20px;
             max-width: 800px;
+            flex-grow: 1;
+            overflow-x: hidden;
         }
         a {
             color: #f1c40f;
@@ -39,14 +59,17 @@
             margin-left: 15px;
         }
         img {
-            max-width: 600px;  /* Ensures images don't exceed 600px width */
-            height: auto;  /* Maintains aspect ratio */
-            display: block;  /* Centers images */
-            margin: auto;  /* Adds automatic margins for centering */
+            max-width: 600px;
+            height: auto;
+            display: block;
+            margin: auto;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
+    <button id="toggle-btn" onclick="toggleSidebar()">☰</button>
     <div id="sidebar">
         <h2>Contents</h2>
         <ul id="topics">
@@ -54,7 +77,6 @@
             <li>GenAI Sessions
                 <ul class="subtopics">
                     <li><a href="#" onclick="loadMarkdown('GenAI Sessions/Session-1-Introduction-to-llm.md')">Session 1 - Introduction to LLM</a></li>
-                    <!-- Add more sessions here -->
                 </ul>
             </li>
         </ul>
@@ -82,6 +104,13 @@
                 <p>This is my personal knowledge base where I document my learnings.</p>
                 <p>Use the sidebar to navigate through different topics.</p>
             `;
+        }
+        
+        function toggleSidebar() {
+            let sidebar = document.getElementById('sidebar');
+            let button = document.getElementById('toggle-btn');
+            sidebar.classList.toggle('collapsed');
+            button.classList.toggle('collapsed');
         }
         
         window.onload = loadHome;

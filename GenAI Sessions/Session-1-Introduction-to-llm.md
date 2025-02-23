@@ -130,9 +130,9 @@ Techniques like dropout, batch normalization, and L2 regularization prevent over
 ### The Problem of Machine Translation
 
 Paper Link: 
-- Neural machine Translation By Jointly Learning to Align and Translate (Sep 2014): https://arxiv.org/pdf/1409.0473
-- Sequence to Sequence Learning with Neural Networks (Dec 2014): https://arxiv.org/pdf/1409.3215
-- Effective Approaches to Attention-based Neural Machine Translation (Sep 2015): https://arxiv.org/pdf/1508.04025v5
+- [Neural machine Translation By Jointly Learning to Align and Translate (Sep 2014)](https://arxiv.org/pdf/1409.0473)
+- [Sequence to Sequence Learning with Neural Networks (Dec 2014)](https://arxiv.org/pdf/1409.3215)
+- [Effective Approaches to Attention-based Neural Machine Translation (Sep 2015)](https://arxiv.org/pdf/1508.04025v5)
 
 
 ![problem-1.png](../assets/problem-1.png)
@@ -150,7 +150,7 @@ Paper Link:
 
 ## Attention is All you Need (June, 2017)
 
-- Paper Link: https://arxiv.org/abs/1706.03762
+- [**Paper Link**](https://arxiv.org/abs/1706.03762)
 - What Transformers Solved:
   - **Sequential Processing and Parallelization**
     - The fundamental limitation of RNNs was their sequential nature - they had to process inputs one token at a time in order. This meant:
@@ -188,17 +188,16 @@ Paper Link:
 
 <img src="https://raw.githubusercontent.com/nlp-with-transformers/notebooks/884293a3ab50071aa2afd1329ecf4a24f0793333//images/chapter03_encoder-zoom.png" width="600"/>
 
-![The Encoder](https://raw.githubusercontent.com/nlp-with-transformers/notebooks/884293a3ab50071aa2afd1329ecf4a24f0793333//images/chapter03_encoder-zoom.png)
 
 ![decoder-block.png](../assets/decoder-block.png)
 
 
 ## GPT-Like Large Language Model
 
-- GPT-1 (2018): https://openai.com/index/language-unsupervised/
-- GPT-2 (2019): https://openai.com/index/better-language-models/
-- GPT-3 (2020): https://arxiv.org/abs/2005.14165
-- Instruction Fine-Tuning (2022): https://openai.com/index/instruction-following/
+- [**GPT-1 (2018)**](https://openai.com/index/language-unsupervised/)
+- [**GPT-2 (2019)**](https://openai.com/index/better-language-models/)
+- [**GPT-3 (2020)**](https://arxiv.org/abs/2005.14165)
+- [**Instruction Fine-Tuning (2022)**](https://openai.com/index/instruction-following/)
 
 ![gpt-architecture.png](../assets/gpt-architecture.png)
 
@@ -209,7 +208,7 @@ Paper Link:
 #### Tokenization and Input Embedding
 
 - GPT-like models uses Byte Pair Encoding(BPE) Algorithm.
-- The Algorithm was published in Paper: http://www.pennelynn.com/Documents/CUJ/HTML/94HTML/19940045.HTM
+- The Algorithm was published in [**Paper**](http://www.pennelynn.com/Documents/CUJ/HTML/94HTML/19940045.HTM)
 - Working of BPE Algorithm:
   - Identify frequent pairs:
     - In each Iteration, scan the text to find the most commonly occurring pair of bytes (or characters).
@@ -231,16 +230,16 @@ Paper Link:
 - Attention is "permutation invariant". It doesn't matter how we order the words in our input sequence because the amount of attention any token pays to another is purely a function of their Embeddings and the Weight Matrices.
 - Adds positional information to the existing embeddings.
 
-`A Positional Encoding is a finite dimensional representation of the location or 'position' of items in a sequence. Given some sequence A = [a_0, a_1, ...., a_{n-1}], the positional encoding must be some type of tensor that we can feed to a model to tell it where some value a_i is in the sequence A.`
+**A Positional Encoding is a finite dimensional representation of the location or 'position' of items in a sequence. Given some sequence A = [a_0, a_1, ...., a_{n-1}], the positional encoding must be some type of tensor that we can feed to a model to tell it where some value a_i is in the sequence A.**
 
-- Thought 1: Just Count.
+- **Thought 1: Just Count.**
     - Its an **absolute positional encoding**.
     - Scale is an issue here. Scale of these number is large.
     - Consider we have 500 tokens, we'll end up with a 500 in vector. Neural network work efficiently with their weights around zero and usually balanced positive and negative, Else, it will cause problems like exploding gradients and unstable training.
 
     ![](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*pS2_ywtYRO7hIRoj0XpHBQ.png)
 
-- Thought 2: Normalize the count above
+- **Thought 2: Normalize the count above**
     - Based on above method limitations, its an obvious approach -> Just divide by the largest integer so all of the values are in range [0,1].
     - The issue is *Normalizing doesn't work with variable sequence lengths.*
     - For e.g., if sequence length is 5, "0.8" would mean 4th element. But if sequence length is 20, "0.8" would mean 16the element.
@@ -248,7 +247,7 @@ Paper Link:
     ![](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*UqZpS0ZUOW3p0MTixPyqoQ.png)
 
 
-- Thought 3: Use Binary instead of Decimal.
+- **Thought 3: Use Binary instead of Decimal.**
     - Instead of writing "35" for the 35th element, we could instead represent its binary form 100011.
     - This will involve *converting our integer to binary* and *converting our scalar to vector*. i.e. we are increasing the dimensionality but it helps in keeping arbitrary long sequences and that too in range [0, 1].
 
@@ -259,7 +258,7 @@ Paper Link:
 
 ***Basically, We need to find a way to make the binary vector a discretization of something continuous. Geometrically, We need to find an embedding manifold. Humanly, we are looking for a curve in the embedding dimensional space, such that as we walk along it slowly increases our 'position' in a continuous way***
 
-- Thought 4: Use a Continuous Binary Vector
+- **Thought 4: Use a Continuous Binary Vector**
     - To make binary vector continuous, we need a function that interpolates a back and forth cycle 0->1->0->0...etc. Basically, we are looking for Cyclic functions. Trignometric functions(Sine, Cosine) are best suited as their range lies in [-1, 1]
 
 $$ PE(pos, 2i) = sin\frac{pos}{10000^{\frac{2i}{d_{model}}}} $$

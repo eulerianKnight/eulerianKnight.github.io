@@ -1,54 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Notes</title>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/contrib/auto-render.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css">
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        #sidebar {
+            width: 250px;
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+        }
+        #content {
+            margin-left: 270px;
+            padding: 20px;
+            max-width: 800px;
+        }
+        a {
+            color: #f1c40f;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .subtopics {
+            margin-left: 15px;
+        }
+    </style>
 </head>
 <body>
+    <div id="sidebar">
+        <h2>Contents</h2>
+        <ul id="topics">
+            <li><a href="#" onclick="loadHome()">Home</a></li>
+            <li>GenAI Sessions
+                <ul class="subtopics">
+                    <li><a href="#" onclick="loadMarkdown('GenAI Sessions/Session-1-Introduction-to-llm.md')">Session 1 - Introduction to LLM</a></li>
+                    <!-- Add more sessions here -->
+                </ul>
+            </li>
+        </ul>
+    </div>
     <div id="content">Loading...</div>
 
     <script>
-        // Load Markdown
-        fetch('GenAI Sessions/Session-1-Introduction-to-llm.md')
-            .then(response => response.text())
-            .then(text => {
-                document.getElementById('content').innerHTML = marked.parse(text);
-                
-                // Render LaTeX using KaTeX
-                renderMathInElement(document.body, {
-                    delimiters: [
-                        {left: "$$", right: "$$", display: true},
-                        {left: "$", right: "$", display: false}
-                    ]
+        function loadMarkdown(file) {
+            fetch(file)
+                .then(response => response.text())
+                .then(text => {
+                    document.getElementById('content').innerHTML = marked.parse(text);
+                    renderMathInElement(document.body, {
+                        delimiters: [
+                            {left: "$$", right: "$$", display: true},
+                            {left: "$", right: "$", display: false}
+                        ]
+                    });
                 });
-            });
+        }
+        
+        function loadHome() {
+            document.getElementById('content').innerHTML = `
+                <h1>Welcome to My Notes</h1>
+                <p>This is my personal knowledge base where I document my learnings.</p>
+                <p>Use the sidebar to navigate through different topics.</p>
+            `;
+        }
+        
+        window.onload = loadHome;
     </script>
-    <script>
-        marked.setOptions({
-            gfm: true,
-            breaks: true,
-            smartLists: true,
-            smartypants: true,
-            mangle: false, // Prevents email obfuscation issues
-            headerIds: false
-        });
-    
-        fetch('GenAI Sessions/Session-1-Introduction-to-llm.md')  // Update this path
-            .then(response => response.text())
-            .then(text => {
-                document.getElementById('content').innerHTML = marked.parse(text);
-                renderMathInElement(document.body, {
-                    delimiters: [
-                        {left: "$$", right: "$$", display: true},
-                        {left: "$", right: "$", display: false}
-                    ]
-                });
-            });
-    </script>
-    
 </body>
 </html>

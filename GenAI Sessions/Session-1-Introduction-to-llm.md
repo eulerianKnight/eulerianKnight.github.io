@@ -141,7 +141,7 @@ Paper Link:
 
 ![problem-3.png](../assets/problem-3.png)
 
-![](https://www.researchgate.net/publication/329464533/figure/fig3/AS:701043021197314@1544153089772/An-attention-based-seq2seq-model.ppm)
+<img src="https://www.researchgate.net/publication/329464533/figure/fig3/AS:701043021197314@1544153089772/An-attention-based-seq2seq-model.ppm" width="600"/>
 
 #### Story of Attention
 
@@ -182,9 +182,11 @@ Paper Link:
       - Unstable optimization
     - Transformers' architecture, along with layer normalization and residual connections, made training deeper networks more stable.
 
-![](https://machinelearningmastery.com/wp-content/uploads/2021/08/attention_research_1.png)
+<img src="https://machinelearningmastery.com/wp-content/uploads/2021/08/attention_research_1.png" width="600"/>
 
-![](https://raw.githubusercontent.com/nlp-with-transformers/notebooks/884293a3ab50071aa2afd1329ecf4a24f0793333//images/chapter03_transformer-encoder-decoder.png)
+<img src="https://raw.githubusercontent.com/nlp-with-transformers/notebooks/884293a3ab50071aa2afd1329ecf4a24f0793333//images/chapter03_transformer-encoder-decoder.png" width="600"/>
+
+<img src="https://raw.githubusercontent.com/nlp-with-transformers/notebooks/884293a3ab50071aa2afd1329ecf4a24f0793333//images/chapter03_encoder-zoom.png" width="600"/>
 
 ![The Encoder](https://raw.githubusercontent.com/nlp-with-transformers/notebooks/884293a3ab50071aa2afd1329ecf4a24f0793333//images/chapter03_encoder-zoom.png)
 

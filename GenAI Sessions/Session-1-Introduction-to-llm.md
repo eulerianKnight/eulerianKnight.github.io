@@ -23,11 +23,11 @@
 - In information theory, entropy measures uncertainty - the less predictable something is, the higher its entropy. 
 - Shannon showed that English has a much lower entropy than random sequences of letters would have, meaning it contains built-in redundancy that helps with error correction and compression.
 - **Entropy Definition:**
-\[H(X) = -\sum p(x_i) \log_2 p(x_i)\]
+$$ H(X) = -\sum p(x_i) \log_2 p(x_i) $$
 - For English text with 27 symbols (26 letters plus space), if all characters were equally likely, the maximum entropy would be:
 H = log₂(27) ≈ 4.76 bits per character.
 - **Conditional Entropy**:
-\[H(X_n|X_1, X_2, ..., X_{n-1}) = -\sum p(x_1, ..., x_n) \log_2 p(x_n|x_1, ..., x_{n-1})\]
+$$ H(X_n|X_1, X_2, ..., X_{n-1}) = -\sum p(x_1, ..., x_n) \log_2 p(x_n|x_1, ..., x_{n-1}) $$
 - Experimental Results:
   - Shannon's human prediction experiments led to an estimate of the entropy of English:
     - For single letters (1st order): ~4.14 bits/character
@@ -35,9 +35,9 @@ H = log₂(27) ≈ 4.76 bits per character.
     - With trigram statistics (3rd order): ~3.3 bits/character
     - Human predictions (approaching infinite order): ~1.3 bits/character
 - **Relative Entropy:**
-\[F(n) = H(X_n|X_1, X_2, ..., X_{n-1}) / H(X_1)\]
+$$ F(n) = H(X_n|X_1, X_2, ..., X_{n-1}) / H(X_1) $$
 - **Redundancy:**
-\[R = 1 - \frac{H}{H_0}\]
+$$ R = 1 - \frac{H}{H_0} $$
 where H is the actual entropy and H₀ is the maximum possible entropy.
 
 
@@ -50,7 +50,7 @@ where H is the actual entropy and H₀ is the maximum possible entropy.
 #### Neural Networks: A Building Block of Deep Learning
 ##### 1. The Perceptron: The Simplest Neural Unit
 The perceptron is the basic unit of a neural network. Mathematically, it performs a weighted sum of inputs and applies an activation function to produce an output.
-\[y = f(w_1 x_1 + w_2 x_2 + ... + w_n x_n + b)\]
+$$ y = f(w_1 x_1 + w_2 x_2 + ... + w_n x_n + b) $$
 
 where:
 - $x_i$ are inputs
@@ -63,7 +63,7 @@ If we consider binary classification, the perceptron learns to separate two clas
 ##### 2. From Perceptron to Deep Networks
 A single perceptron is limited to learning only linearly separable problems. To learn more complex relationships, we stack multiple layers of perceptrons together, forming a multi-layer perceptron (MLP). Each layer in an MLP transforms its input non-linearly before passing it to the next layer:
 
-\[h_j = f(W_j x + b_j)\]
+$$ h_j = f(W_j x + b_j) $$
 
 where $W_j$ and $b_j$ are the weight matrix and bias for layer $j$, and $f$ is the activation function.
 
@@ -75,32 +75,32 @@ Deep networks with multiple layers capture hierarchical representations, making 
 ##### 1. Forward Propagation
 Given an input $x$, the network computes outputs by applying weights and biases layer by layer. If we have $L$ layers, the computation follows:
 
-\[a^{(l)} = f(W^{(l)} a^{(l-1)} + b^{(l)})\]
+$$ a^{(l)} = f(W^{(l)} a^{(l-1)} + b^{(l)}) $$
 
 where $a^{(0)} = x$ and $a^{(l)}$ is the activation at layer $l$.
 
 ##### 2. Loss Function
 To measure how well the network is performing, we define a loss function \( \mathcal{L} \), such as Mean Squared Error (MSE) for regression:
 
-$\mathcal{L} = \frac{1}{m} \sum_{i=1}^{m} (y_i - \hat{y}_i)^2$
+$$ \mathcal{L} = \frac{1}{m} \sum_{i=1}^{m} (y_i - \hat{y}_i)^2 $$
 
 or Cross-Entropy for classification:
 
-$\mathcal{L} = -\sum_{i} y_i \log(\hat{y}_i)$
+$$ \mathcal{L} = -\sum_{i} y_i \log(\hat{y}_i) $$
 
 where $y_i$ is the true label and $\hat{y}_i$ is the predicted probability.
 
 ##### 3. Backpropagation and Optimization
 To minimize the loss, we adjust the weights using Gradient Descent. The gradients are computed using the chain rule:
 
-$\frac{\partial \mathcal{L}}{\partial W^{(l)}} = \frac{\partial \mathcal{L}}{\partial a^{(l)}} \cdot \frac{\partial a^{(l)}}{\partial W^{(l)}}$
+$$ \frac{\partial \mathcal{L}}{\partial W^{(l)}} = \frac{\partial \mathcal{L}}{\partial a^{(l)}} \cdot \frac{\partial a^{(l)}}{\partial W^{(l)}} $$
 
 where $\frac{\partial \mathcal{L}}{\partial W^{(l)}}$ updates the weights in layer $l$. This iterative process is called backpropagation.
 
 ##### 4. Activation Functions
 Activation functions introduce non-linearity, allowing deep networks to learn complex functions. Some common ones:
-- Sigmoid: $f(x) = \frac{1}{1 + e^{-x}}$
-- ReLU: $f(x) = \max(0, x)$
+- Sigmoid: $$ f(x) = \frac{1}{1 + e^{-x}} $$
+- ReLU: $$ f(x) = \max(0, x) $$
 - Softmax: Converts outputs into probabilities for classification
 
 ---
@@ -262,9 +262,9 @@ Paper Link:
 - Thought 4: Use a Continuous Binary Vector
     - To make binary vector continuous, we need a function that interpolates a back and forth cycle 0->1->0->0...etc. Basically, we are looking for Cyclic functions. Trignometric functions(Sine, Cosine) are best suited as their range lies in [-1, 1]
 
-$PE(pos, 2i) = sin\frac{pos}{10000^{\frac{2i}{d_{model}}}}$
+$$ PE(pos, 2i) = sin\frac{pos}{10000^{\frac{2i}{d_{model}}}} $$
 
-$PE(pos, 2i + 1) = cos\frac{pos}{10000^{\frac{2i}{d_{model}}}}$
+$$ PE(pos, 2i + 1) = cos\frac{pos}{10000^{\frac{2i}{d_{model}}}} $$
 
 ![positional_encoding.png](../assets/positional_encoding.png)
 
@@ -287,7 +287,7 @@ continuous, so relative positions are easier to see for the model.
 
 ![attention.jpg](../assets/attention.jpg)
 
-$Attention(Q, K, V) = Softmax(\frac{(QK^T)}{\sqrt(d_k)}V$
+$$ Attention(Q, K, V) = Softmax(\frac{(QK^T)}{\sqrt(d_k)})V $$
 
 - Reason for normalization by the embedding dimension size is to improve the training performance by avoiding small gradients.
 - The terms "key", "query" and "value" in the context of attention mechanisms are borrowed from domain of information retrieval and databases, where similar concepts are used to store, search and retrieve information.
@@ -304,8 +304,8 @@ sentence (provided by the positional encodings) but also each word's interaction
 
 #### Multi-Head Attention
 
-$\text{MultiHead}(Q, K, V) = \text{Concat}(head_1,...,head_h)W^O$
-$\text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)$
+$$ \text{MultiHead}(Q, K, V) = \text{Concat}(head_1,...,head_h)W^O $$
+$$ \text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V) $$
 
 $\text{where, } W_i^Q \in \mathbb{R}^{d_{\text{model}} \times d_k}, W_i^K \in \mathbb{R}^{d_{\text{model}} \times d_k}, W_i^V \in \mathbb{R}^{d_{\text{model}} \times d_v}, W^O \in \mathbb{R}^{hd_v \times d_{\text{model}}}$
 

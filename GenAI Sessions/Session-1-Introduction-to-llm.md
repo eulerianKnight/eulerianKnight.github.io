@@ -7,8 +7,8 @@
 ### Entropy
 
 #### Paper Link: 
-- **A Mathematical Theory of Communication(1948):** https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf
-- **Prediction and Entropy of Printed English(1951):** https://www.princeton.edu/~wbialek/rome/refs/shannon_51.pdf
+- [**A Mathematical Theory of Communication(1948)**](https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf)
+- [**Prediction and Entropy of Printed English(1951)**](https://www.princeton.edu/~wbialek/rome/refs/shannon_51.pdf)
 
 #### Intuition
 
@@ -23,11 +23,11 @@
 - In information theory, entropy measures uncertainty - the less predictable something is, the higher its entropy. 
 - Shannon showed that English has a much lower entropy than random sequences of letters would have, meaning it contains built-in redundancy that helps with error correction and compression.
 - **Entropy Definition:**
-```For a discrete random variable X with possible values x₁, x₂, ..., xₙ and probabilities p(x₁), p(x₂), ..., p(xₙ),the entropy H(X) is defined as:H(X) = -∑ p(xᵢ) log₂ p(xᵢ)```
+\[H(X) = -\sum p(x_i) \log_2 p(x_i)\]
 - For English text with 27 symbols (26 letters plus space), if all characters were equally likely, the maximum entropy would be:
 H = log₂(27) ≈ 4.76 bits per character.
 - **Conditional Entropy**:
-```For a sequence of letters X₁, X₂, ..., Xₙ, the nth-order entropy is: H(Xₙ|X₁, X₂, ..., Xₙ₋₁) = -∑ p(x₁, ..., xₙ) log₂ p(xₙ|x₁, ..., xₙ₋₁)```
+\[H(X_n|X_1, X_2, ..., X_{n-1}) = -\sum p(x_1, ..., x_n) \log_2 p(x_n|x_1, ..., x_{n-1})\]
 - Experimental Results:
   - Shannon's human prediction experiments led to an estimate of the entropy of English:
     - For single letters (1st order): ~4.14 bits/character
@@ -35,9 +35,10 @@ H = log₂(27) ≈ 4.76 bits per character.
     - With trigram statistics (3rd order): ~3.3 bits/character
     - Human predictions (approaching infinite order): ~1.3 bits/character
 - **Relative Entropy:**
-```F(n) = H(Xₙ|X₁, X₂, ..., Xₙ₋₁) / H(X₁)```. This measures how much the entropy decreases when considering n-grams instead of individual letters.
+\[F(n) = H(X_n|X_1, X_2, ..., X_{n-1}) / H(X_1)\]
 - **Redundancy:**
-```The redundancy R of English is defined as: R = 1 - H/H₀ where H is the actual entropy and H₀ is the maximum possible entropy.```
+\[R = 1 - \frac{H}{H_0}\]
+where H is the actual entropy and H₀ is the maximum possible entropy.
 
 
 ### A Very Short Introduction to Deep Learning

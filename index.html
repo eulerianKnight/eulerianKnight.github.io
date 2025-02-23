@@ -2,31 +2,91 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>My Notes</title>
+    <title>My Notes on Generative AI</title>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/contrib/auto-render.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        #sidebar {
+            width: 250px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-right: 1px solid #dee2e6;
+        }
+
+        #main-content {
+            flex: 1;
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .sidebar-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .nav-item {
+            margin: 10px 0;
+        }
+
+        .nav-item a {
+            color: #495057;
+            text-decoration: none;
+            display: block;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .nav-item a:hover {
+            background-color: #e9ecef;
+            color: #212529;
+        }
+
+        #content {
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            color: #212529;
+        }
+
+        .welcome-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #dee2e6;
+        }
+    </style>
 </head>
 <body>
-    <div id="content">Loading...</div>
+    <div id="sidebar">
+        <div class="sidebar-title">Contents</div>
+        <nav>
+            <div class="nav-item">
+                <a href="#" onclick="loadContent('welcome')">Home</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" onclick="loadContent('session1')">1. Introduction to LLMs</a>
+            </div>
+            <!-- Add more navigation items as needed -->
+        </nav>
+    </div>
 
-    <script>
-        // Load Markdown
-        fetch('GenAI Sessions/Session-1-Introduction-to-llm.md')
-            .then(response => response.text())
-            .then(text => {
-                document.getElementById('content').innerHTML = marked.parse(text);
-                
-                // Render LaTeX using KaTeX
-                renderMathInElement(document.body, {
-                    delimiters: [
-                        {left: "$$", right: "$$", display: true},
-                        {left: "$", right: "$", display: false}
-                    ]
-                });
-            });
-    </script>
+    <div id="main-content">
+        <div id="content">Loading...</div>
+    </div>
+
     <script>
         marked.setOptions({
             gfm: true,
@@ -36,19 +96,50 @@
             mangle: false,
             headerIds: false
         });
-    
-        fetch('GenAI Sessions/Session-1-Introduction-to-llm.md')
-            .then(response => response.text())
-            .then(text => {
-                document.getElementById('content').innerHTML = marked.parse(text);
+
+        const welcomeContent = `
+# Welcome to My GenAI Learning Notes
+
+This is a collection of my notes and learnings about Generative AI and Large Language Models. Here you'll find:
+
+- Detailed session notes on various GenAI topics
+- Mathematical foundations and concepts
+- Important research papers and references
+- Practical implementations and examples
+
+Feel free to navigate through the topics using the sidebar menu.
+
+## Latest Updates
+- Added Session 1: Introduction to LLMs
+- More content coming soon!
+        `;
+
+        function loadContent(page) {
+            if (page === 'welcome') {
+                document.getElementById('content').innerHTML = marked.parse(welcomeContent);
                 renderMathInElement(document.body, {
                     delimiters: [
                         {left: "$$", right: "$$", display: true},
                         {left: "$", right: "$", display: false}
                     ]
                 });
-            });
+            } else if (page === 'session1') {
+                fetch('GenAI Sessions/Session-1-Introduction-to-llm.md')
+                    .then(response => response.text())
+                    .then(text => {
+                        document.getElementById('content').innerHTML = marked.parse(text);
+                        renderMathInElement(document.body, {
+                            delimiters: [
+                                {left: "$$", right: "$$", display: true},
+                                {left: "$", right: "$", display: false}
+                            ]
+                        });
+                    });
+            }
+        }
+
+        // Load welcome content by default
+        loadContent('welcome');
     </script>
-    
 </body>
 </html>

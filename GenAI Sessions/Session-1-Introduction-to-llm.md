@@ -43,7 +43,7 @@ where H is the actual entropy and H₀ is the maximum possible entropy.
 
 ### A Very Short Introduction to Deep Learning
 
-- Deep Learning (DL) is a subset of Machine Learning (ML) inspired by the structure and function of the human brain. At its core, it involves training artificial neural networks (ANNs) on large amounts of data to learn patterns and make decisions. To build intuition, let's explore neural networks, starting from simple concepts to their mathematical foundation.
+- Deep Learning (DL) is a subset of Machine Learning (ML) inspired by the structure and function of the human brain. At its core, it involves training artificial neural networks (ANNs) on large amounts of data to learn patterns and make decisions.
 
 ---
 
@@ -140,13 +140,13 @@ Paper Link:
 ![problem-2.png](../assets/problem-2.png)
 
 ![problem-3.png](../assets/problem-3.png)
-
+[Image taken from Build a Large Language Model from scratch by Sebastian Raschka. Link: https://github.com/rasbt/LLMs-from-scratch]
 <img src="https://www.researchgate.net/publication/329464533/figure/fig3/AS:701043021197314@1544153089772/An-attention-based-seq2seq-model.ppm" width="600"/>
 
 #### Story of Attention
 
 ![bahdanu-mail-attention.jpg](../assets/bahdanu-mail-attention.jpg)
-
+[Image used from Andrej Karpathy Tweet. Link: https://x.com/karpathy/status/1864023344435380613?lang=en]
 
 ## Attention is All you Need (June, 2017)
 
@@ -190,7 +190,7 @@ Paper Link:
 
 
 ![decoder-block.png](../assets/decoder-block.png)
-
+[Images used from NLP with Transformers book. Link: https://github.com/nlp-with-transformers]
 
 ## GPT-Like Large Language Model
 
@@ -297,8 +297,6 @@ $$ Attention(Q, K, V) = Softmax(\frac{(QK^T)}{\sqrt(d_k)})V $$
 - Each row in the final Attention matrix not only captures meaning(provided by the embedding) or the position in the 
 sentence (provided by the positional encodings) but also each word's interaction with other words.
 - Self-Attention is permutation invariant.
-- Self-Attention requires no parameters. Up to now the interaction between words has been driven by their embedding and the positional encodings.
-- Expectation is that the values along the diagonal to be the highest.
 
 
 #### Multi-Head Attention

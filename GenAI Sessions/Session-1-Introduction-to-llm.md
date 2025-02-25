@@ -307,3 +307,20 @@ $$ \text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V) $$
 $\text{where, } W_i^Q \in \mathbb{R}^{d_{\text{model}} \times d_k}, W_i^K \in \mathbb{R}^{d_{\text{model}} \times d_k}, W_i^V \in \mathbb{R}^{d_{\text{model}} \times d_v}, W^O \in \mathbb{R}^{hd_v \times d_{\text{model}}}$
 
 ![multi-head-attention.jpg](../assets/multi-head-attention.jpg)
+
+### Step 3-LLM Architecture
+
+![[gpt-2-arch.jpg]]
+
+#### Layer Normalization
+
+- [Paper Link](https://arxiv.org/abs/1607.06450)
+- ![[layer-normalization.png]]
+#### Activation Function
+- [GeLU Paper](https://arxiv.org/abs/1606.08415)
+- [SwiGLU Paper](https://arxiv.org/pdf/2002.05202)
+
+$$GELU(x) \approx 0.5 \times x \times (1 + tanh[\sqrt{\frac{2}{\pi}} \times (x + 0.044715 \times x^{3})]) $$
+![[activation-function.png]]
+### Feed Forward Network
+![[model_architecture_with_params.png]]

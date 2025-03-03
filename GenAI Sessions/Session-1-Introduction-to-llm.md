@@ -310,17 +310,17 @@ $\text{where, } W_i^Q \in \mathbb{R}^{d_{\text{model}} \times d_k}, W_i^K \in \m
 
 ### Step 3-LLM Architecture
 
-![[gpt-2-arch.jpg]]
+![gpt-2-arch.jpg]
 
 #### Layer Normalization
 
 - [Paper Link](https://arxiv.org/abs/1607.06450)
-- ![[layer-normalization.png]]
+- ![layer-normalization.png]
 #### Activation Function
 - [GeLU Paper](https://arxiv.org/abs/1606.08415)
 - [SwiGLU Paper](https://arxiv.org/pdf/2002.05202)
 
 $$GELU(x) \approx 0.5 \times x \times (1 + tanh[\sqrt{\frac{2}{\pi}} \times (x + 0.044715 \times x^{3})]) $$
-![[activation-function.png]]
+![activation-function.png]
 ### Feed Forward Network
-![[model_architecture_with_params.png]]
+![model_architecture_with_params.png]

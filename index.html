@@ -66,6 +66,40 @@
             border-radius: 8px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
         }
+        
+        .course-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .course-title {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .course-meta {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        
+        .course-projects {
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+        
+        .certificate-link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .certificate-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -77,6 +111,11 @@
             <li>GenAI Sessions
                 <ul class="subtopics">
                     <li><a href="#" onclick="loadMarkdown('GenAI Sessions/Session-1-Introduction-to-llm.md')">Session 1 - Introduction to LLM</a></li>
+                </ul>
+            </li>
+            <li>My Learnings
+                <ul class="subtopics" id="learnings-list">
+                    <!-- This will be populated dynamically -->
                 </ul>
             </li>
         </ul>
@@ -112,6 +151,52 @@
             sidebar.classList.toggle('collapsed');
             button.classList.toggle('collapsed');
         }
+        
+        function loadCourses() {
+            const courses = [
+                {
+                    title: "Example Course 1",
+                    certificateLink: "https://example.com/cert1",
+                    completionDate: "2024-01-15",
+                    projects: [
+                        "Project 1 - Description",
+                        "Project 2 - Description"
+                    ],
+                    description: "This course covered various topics including..."
+                },
+                // Add more courses here
+            ];
+
+            let content = `
+                <h1>My Learning Journey</h1>
+                <div id="courses-container">
+            `;
+
+            courses.forEach(course => {
+                content += `
+                    <div class="course-card">
+                        <h2 class="course-title">${course.title}</h2>
+                        <div class="course-meta">
+                            <p>Completed on: ${new Date(course.completionDate).toLocaleDateString()}</p>
+                            <p><a href="${course.certificateLink}" class="certificate-link" target="_blank">View Certificate</a></p>
+                        </div>
+                        <p>${course.description}</p>
+                        <h3>Projects:</h3>
+                        <ul class="course-projects">
+                            ${course.projects.map(project => `<li>${project}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            content += '</div>';
+            document.getElementById('content').innerHTML = content;
+        }
+
+        // Modify the sidebar to include the courses link
+        document.querySelector('#learnings-list').innerHTML = `
+            <li><a href="#" onclick="loadCourses()">View All Courses</a></li>
+        `;
         
         window.onload = loadHome;
     </script>
